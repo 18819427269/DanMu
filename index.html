@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		#box{
+			width: 400px;
+			height: 300px;
+			background: peachpuff;
+			margin: 0 auto;
+			margin-top: 20px;
+			position: relative;
+		}
+			
+		#inp{
+			width: 290px;
+			height: 30px;
+			margin-left: 485px;
+		}
+		#btn{
+			width: 100px;
+			height: 35px;
+			background: blueviolet;
+		}
+		p{
+			position: absolute;
+			top:0px;
+			right:0px;
+			font-size: 20px;
+		}
+		
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<input type="text" id="inp" value=""/>
+		<input type="button" id="btn" value="发送"/>
+	</body>
+		<script type="text/javascript">
+		var box=document.getElementById("box");
+		var inp=document.getElementById("inp");
+		var btn=document.getElementById("btn");
+		
+		btn.onclick=function(){   //鼠标点击事件
+			var color=["red","blue","yellow","plum","black"];
+			var bcolor=Math.floor(Math.random()*color.length);//获取颜色的随机色
+			var gao=Math.floor(Math.random()*280);//随机高度
+			
+			var p=document.createElement("p");//创建p标签
+			p.innerHTML+=inp.value;//在p标签里获取输入框里面的值
+			inp.value="";//清空输入框
+			//给p标签设置样式
+			p.style.color=color[bcolor];
+			p.style.right=0+'px';
+			p.style.top=gao+"px";
+			box.textAlign="right";
+			box.appendChild(p);//添加p到box里面
+			var a=0;
+			var time=null;
+			time=setInterval(function(){
+				p.style.right=a+"px";
+				a++;
+				
+				if(p.offsetLeft==0){
+					p.style.display="none"
+					clearInterval(time);
+				}else{
+					p.style.left=(p.offsetLeft-1)+"px"
+				}
+			},1)
+		
+		}
+		
+		
+		
+		
+		document.onkeydown=function(ev){  //键盘事件
+			var ev=ev||window.event;
+			if(ev.keyCode==13){
+				var color=["red","blue","yellow","plum","black"];
+				var bcolor=Math.floor(Math.random()*color.length);//获取颜色的随机色
+				var gao=Math.floor(Math.random()*280);//随机高度
+				
+				var p=document.createElement("p");//创建p标签
+				p.innerHTML+=inp.value;//在p标签里获取输入框里面的值
+				inp.value="";//清空输入框
+				p.style.color=color[bcolor];
+				p.style.right=0+'px';
+				p.style.top=gao+"px";
+				box.textAlign="right";
+				box.appendChild(p);//添加p到box里面
+				//给一个计时器
+				var a=0;
+				var time=null;
+				time=setInterval(function(){
+					p.style.right=a+"px";
+					a++;
+					if(p.offsetLeft==0){
+						p.style.display="none"
+						clearInterval(time);
+					}else{
+						p.style.left=(p.offsetLeft-1)+"px"
+					}
+				},1)
+			}
+			
+		}
+		
+		
+		
+	</script>
+</html>
